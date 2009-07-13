@@ -1,0 +1,7 @@
+License: BSD License
+Description: JUnicode
+Implementation-URL: http://junidecode.sf.net
+Implementation-Version: #version#
+Built-By: #user.name#
+Build-Date: #today#
+Main-Class: #mainclass#
