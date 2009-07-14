@@ -1,13 +1,41 @@
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>net.sf</groupId>
     <artifactId>junidecode</artifactId>
     <packaging>jar</packaging>
     <version>0.1</version>
     <name>junidecode</name>
+    <licenses>
+        <license>
+            <name>BSD License</name>
+            <url>http://www.debian.org/misc/bsd.license</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Giuseppe Cardone</name>
+            <id>ippatsuman</id>
+            <email>ippatsuman@gmail.com</email>
+            <roles>
+                <role>admin</role>
+                <role>developer</role>
+            </roles>
+            <timezone>GMT+1</timezone>
+        </developer>
+    </developers>
+
     <url>http://junidecode.sf.net</url>
+
+    <scm>
+        <connection>scm:svn:https://junidecode.svn.sourceforge.net/svnroot/junidecode/trunk</connection>
+        <developerConnection>scm:svn:https://junidecode.svn.sourceforge.net/svnroot/junidecode</developerConnection>
+        <url>http://junidecode.svn.sourceforge.net/viewvc/junidecode</url>
+    </scm>
+
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
@@ -49,7 +77,7 @@
                     </descriptorRefs>
                 </configuration>
             </plugin>
-            
+
             <plugin>
                 <artifactId>maven-antrun-plugin</artifactId>
                 <executions>
