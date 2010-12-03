@@ -1,4 +1,5 @@
 Character   Code Point      JUnidecode  Text::Unidecode
+            U+007F          (empty)     control character
 ŋ           U+014A          ng          NG
 Ŋ           U+014B          NG          ng
 €           U+20AC          EUR         EU
