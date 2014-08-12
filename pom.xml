@@ -1,11 +1,15 @@
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>net.sf</groupId>
+    <parent>
+        <groupId>org.sonatype.oss</groupId>
+        <artifactId>oss-parent</artifactId>
+        <version>9</version>
+    </parent>
+    <groupId>com.moparisthebest</groupId>
     <artifactId>junidecode</artifactId>
     <packaging>jar</packaging>
-    <version>0.1.1</version>
+    <version>0.1.1-SNAPSHOT</version>
     <name>junidecode</name>
     <licenses>
         <license>
@@ -30,14 +34,15 @@
     <url>http://junidecode.sf.net</url>
 
     <scm>
-        <connection>scm:svn:https://junidecode.svn.sourceforge.net/svnroot/junidecode/trunk</connection>
-        <developerConnection>scm:svn:https://junidecode.svn.sourceforge.net/svnroot/junidecode</developerConnection>
-        <url>http://junidecode.svn.sourceforge.net/viewvc/junidecode</url>
+        <connection>scm:git:https://github.com/moparisthebest/junidecode.git</connection>
+        <developerConnection>scm:git:https://github.com/moparisthebest/junidecode.git</developerConnection>
+        <url>https://github.com/moparisthebest/junidecode</url>
     </scm>
-
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <pushChanges>false</pushChanges>
+        <localCheckout>true</localCheckout>
     </properties>
     <dependencies>
         <dependency>
@@ -52,6 +57,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
                 <configuration>
                     <source>1.5</source>
                     <target>1.5</target>
@@ -62,6 +68,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
+                <version>2.5</version>
                 <configuration>
                     <archive>
                         <manifestFile>${project.build.directory}/assembly.manifest</manifestFile>
@@ -89,18 +96,18 @@
                         </goals>
                         <configuration>
                             <tasks>
-                                <copy file="${basedir}/assembly.manifest" todir="${project.build.directory}" overwrite="true"/>
+                                <copy file="${basedir}/assembly.manifest" todir="${project.build.directory}" overwrite="true" />
                                 <tstamp>
                                     <format property="TODAY" pattern="yyyy-MM-dd hh:mm:ss" />
                                 </tstamp>
                                 <echo>pom.xml: timestamp ${TODAY}</echo>
                                 <replace dir="${project.build.directory}">
-                                    <include name="assembly.manifest"/>
-                                    <replacefilter token="#build#" value="${buildLabel}"/>
-                                    <replacefilter token="#version#" value="${version}"/>
-                                    <replacefilter token="#user.name#" value="${user.name}"/>
-                                    <replacefilter token="#today#" value="${TODAY}"/>
-                                    <replacefilter token="#mainclass#" value="net.sf.junidecode.App"/>
+                                    <include name="assembly.manifest" />
+                                    <replacefilter token="#build#" value="${buildLabel}" />
+                                    <replacefilter token="#version#" value="${project.version}" />
+                                    <replacefilter token="#user.name#" value="${user.name}" />
+                                    <replacefilter token="#today#" value="${TODAY}" />
+                                    <replacefilter token="#mainclass#" value="net.sf.junidecode.App" />
                                 </replace>
                             </tasks>
                         </configuration>
@@ -108,6 +115,17 @@
                 </executions>
             </plugin>
 
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>1.6.2</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>ossrh</serverId>
+                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 </project>
